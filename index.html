@@ -615,6 +615,104 @@ header p { font-size: 0.75rem; color: #a8bce8; font-weight: 300; margin-top: 2px
   border-left: 4px solid var(--primario);
 }
 
+/* ===== Import Especial ===== */
+.btn-import-especial {
+  padding: 7px 16px;
+  border: 1.5px solid var(--primario);
+  border-radius: 20px;
+  background: #fff;
+  color: var(--primario);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  margin-left: auto;
+}
+.btn-import-especial:hover { background: var(--primario); color: #fff; }
+
+.ie-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26,45,107,0.45);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4vh 12px;
+  overflow-y: auto;
+}
+.ie-modal {
+  background: var(--branco);
+  border-radius: 14px;
+  box-shadow: var(--sombra2);
+  width: 100%;
+  max-width: 780px;
+  padding: 18px 22px 22px;
+}
+.ie-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
+.ie-titulo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--primario); }
+.ie-fechar { border: none; background: none; font-size: 1.1rem; color: var(--cinza); cursor: pointer; padding: 4px 8px; border-radius: 6px; }
+.ie-fechar:hover { background: var(--fundo2); color: var(--primario); }
+.ie-sub { font-size: 0.78rem; color: var(--cinza); margin-bottom: 12px; }
+.ie-modal > input[type="text"] {
+  padding: 11px 14px;
+  border: 1.5px solid var(--fundo3);
+  border-radius: 8px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.9rem;
+  background: var(--fundo);
+  color: var(--texto);
+  width: 100%;
+  outline: none;
+}
+.ie-modal > input[type="text"]:focus { border-color: var(--primario); background: #fff; }
+.ie-status { font-size: 0.78rem; color: var(--cinza); margin: 6px 0 4px; }
+.ie-status.erro { color: var(--destaque); }
+.ie-resultados { margin-top: 6px; border: 1.5px solid var(--fundo3); border-radius: 10px; overflow-y: auto; max-height: 280px; display: none; }
+.ie-res { padding: 9px 14px; border-bottom: 1px solid var(--fundo3); cursor: pointer; font-size: 0.85rem; color: var(--texto); }
+.ie-res:last-child { border-bottom: none; }
+.ie-res:hover { background: var(--fundo2); }
+.ie-res.selecionado { background: var(--fundo2); border-left: 4px solid var(--primario); }
+.ie-res strong { color: var(--primario); }
+.ie-res-sub { display: block; font-size: 0.75rem; color: var(--cinza); margin-top: 2px; }
+.ie-badge { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 0.7rem; font-weight: 700; margin-left: 6px; background: var(--fundo3); color: var(--primario); vertical-align: middle; }
+.ie-badge.lcd { background: #e3ecff; }
+.ie-badge.lct { background: #e8f7ea; color: var(--verde); }
+.ie-badge.fdr { background: #fff1de; color: var(--amarelo-dk); }
+.ie-badge-obs { display: inline-block; margin-left: 6px; font-size: 0.72rem; font-weight: 700; color: var(--amarelo-dk); }
+.ie-vazio { padding: 14px; text-align: center; color: var(--cinza); font-size: 0.85rem; }
+
+.ie-detalhe { margin-top: 14px; border-top: 1.5px solid var(--fundo3); padding-top: 14px; }
+.ie-pessoa { background: var(--fundo); border: 1px solid var(--fundo3); border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; }
+.ie-pessoa-nome { font-size: 0.95rem; font-weight: 700; color: var(--primario); }
+.ie-pessoa-origem { font-size: 0.76rem; color: var(--cinza); margin-bottom: 8px; }
+.ie-dados { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4px 16px; font-size: 0.8rem; color: var(--texto2); }
+.ie-dados b { color: var(--primario); font-weight: 600; }
+.ie-secao-titulo { font-size: 0.8rem; font-weight: 700; color: var(--primario); margin: 4px 0 8px; }
+.ie-slots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 8px; }
+.ie-slot { border: 1.5px solid var(--fundo3); border-radius: 10px; background: var(--fundo); padding: 8px 12px; cursor: pointer; text-align: left; font-family: inherit; color: var(--texto2); transition: all 0.15s; }
+.ie-slot:hover:not(.desabilitado) { border-color: var(--primario2); }
+.ie-slot b { display: block; font-size: 0.82rem; color: var(--primario); }
+.ie-slot span { display: block; font-size: 0.72rem; color: var(--cinza); }
+.ie-slot.selecionado { background: var(--primario); border-color: var(--primario); }
+.ie-slot.selecionado b, .ie-slot.selecionado span { color: #fff; }
+.ie-slot.desabilitado { opacity: 0.45; cursor: not-allowed; }
+.ie-nota { font-size: 0.76rem; color: var(--cinza); margin-bottom: 12px; }
+.ie-check { display: flex; align-items: flex-start; gap: 8px; font-size: 0.82rem; color: var(--texto2); margin-bottom: 8px; cursor: pointer; }
+.ie-check input { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--verde); flex-shrink: 0; cursor: pointer; }
+.ie-obs { background: #fff8e1; border: 1.5px solid #f2c94c; border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; }
+.ie-obs .ie-secao-titulo { color: #8a6100; }
+.ie-obs-item { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; border-top: 1px dashed #e8d48a; font-size: 0.8rem; color: var(--texto); cursor: pointer; }
+.ie-obs-item:first-of-type { border-top: none; }
+.ie-obs-item input { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--verde); flex-shrink: 0; cursor: pointer; }
+.ie-obs-texto { white-space: pre-wrap; word-break: break-word; }
+.ie-obs-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; color: var(--verde); margin-left: 6px; }
+.ie-acoes { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+.ie-btn-cancelar { padding: 8px 18px; border: 1.5px solid var(--fundo3); border-radius: 20px; background: #fff; color: var(--texto2); font-weight: 700; font-size: 0.8rem; cursor: pointer; }
+.ie-btn-cancelar:hover { border-color: var(--primario2); }
+@media (max-width: 560px) { .ie-slots { grid-template-columns: 1fr; } }
+
 .busca-cadastro-input-wrap { position: relative; }
 
 .busca-cadastro-input-wrap input {
@@ -807,7 +905,7 @@ header p { font-size: 0.75rem; color: #a8bce8; font-weight: 300; margin-top: 2px
 <header>
   <div class="icon-badge">📋</div>
   <div>
-    <h1>Gerador de Contratos de Locação <span class="versao">v91</span></h1>
+    <h1>Gerador de Contratos de Locação <span class="versao">v92</span></h1>
     <p>Preencha os campos e gere o Excel no formato "Contratos Locação"</p>
   </div>
 </header>
@@ -854,6 +952,7 @@ header p { font-size: 0.75rem; color: #a8bce8; font-weight: 300; margin-top: 2px
         <div class="categoria-btn" data-categoria="TODOS" onclick="selecionarTodasCategorias(this)">✅ Selecionar Todos</div>
       </div>
       <button class="btn-importar-cadastro" id="btnImportarCadastro" onclick="importarResultadoSelecionado()" disabled>⬇ Importar</button>
+      <button type="button" class="btn-import-especial" onclick="abrirImportEspecial()" title="Importar uma pessoa ou empresa de qualquer contrato para a posição que você escolher">✨ Import Especial</button>
     </div>
 
     <div class="busca-cadastro-input-wrap">
@@ -1547,6 +1646,22 @@ header p { font-size: 0.75rem; color: #a8bce8; font-weight: 300; margin-top: 2px
       <button class="btn-gerar" onclick="gerarExcel()">⬇ Gerar Excel — Contratos Locação</button>
       <button class="btn-gerar" id="btn-gerar-contrato" onclick="gerarContratoWord()" style="background: var(--primario2, #6b46c1);">📄 Gerar Contrato (Word)</button>
     </div>
+  </div>
+</div>
+
+<!-- IMPORT ESPECIAL: busca uma pessoa/empresa em qualquer papel (Locador, Locatário, Fiador)
+     de todos os contratos do cadastro e deixa escolher em qual posição ela entra no contrato atual -->
+<div class="ie-overlay" id="ie_overlay" style="display:none" onclick="if (event.target === this) fecharImportEspecial()">
+  <div class="ie-modal" role="dialog" aria-modal="true" aria-labelledby="ie_titulo">
+    <div class="ie-header">
+      <div class="ie-titulo" id="ie_titulo">✨ Import Especial</div>
+      <button type="button" class="ie-fechar" onclick="fecharImportEspecial()" aria-label="Fechar">✕</button>
+    </div>
+    <div class="ie-sub">Procure uma pessoa ou empresa que já aparece no cadastro (como Locador, Locatário ou Fiador) e escolha em qual posição ela entra neste contrato.</div>
+    <input type="text" id="ie_busca" placeholder="Nome da pessoa ou empresa (ou CPF/CNPJ)..." autocomplete="off" oninput="ieBuscar()">
+    <div class="ie-status" id="ie_status"></div>
+    <div class="ie-resultados" id="ie_resultados"></div>
+    <div class="ie-detalhe" id="ie_detalhe" style="display:none"></div>
   </div>
 </div>
 
@@ -2245,16 +2360,17 @@ function sincronizarObservacoesPadrao() {
   const textarea = document.getElementById('observacoes');
   const valorAtual = textarea.value;
 
+  // Tira o bloco automático da vez anterior de onde quer que ele esteja no
+  // texto (não só no final) — quando a pessoa digita ou importa observações
+  // DEPOIS do bloco automático, ele continua sendo reconhecido e trocado pelo
+  // novo, em vez de ficar duplicado.
   let textoManual = valorAtual;
   if (ULTIMO_BLOCO_OBS_AUTO) {
-    const sufixo = '\n\n' + ULTIMO_BLOCO_OBS_AUTO;
-    if (valorAtual.endsWith(sufixo)) {
-      textoManual = valorAtual.slice(0, -sufixo.length);
-    } else if (valorAtual.trim() === ULTIMO_BLOCO_OBS_AUTO.trim()) {
-      textoManual = '';
-    }
+    const i = valorAtual.indexOf(ULTIMO_BLOCO_OBS_AUTO);
+    if (i >= 0) textoManual = valorAtual.slice(0, i) + valorAtual.slice(i + ULTIMO_BLOCO_OBS_AUTO.length);
   }
-  textoManual = textoManual.trim();
+  textoManual = textoManual.replace(/\n{3,}/g, '\n\n').trim();
+  if (textoManual === '---') textoManual = ''; // "---" é só o marcador de campo vazio, não texto de verdade
 
   const novoBloco = linhas.join('\n');
   const partes = [];
@@ -6438,6 +6554,401 @@ document.getElementById('busca_cadastro_resultados').addEventListener('click', f
   if (!item) return;
   selecionarResultadoBusca(parseInt(item.dataset.idx, 10));
 });
+
+// ==========================================================
+// IMPORT ESPECIAL
+// Procura uma pessoa/empresa em TODOS os papéis (Locador, Locatário, Fiador)
+// de TODOS os contratos do cadastro, mostra em que função ela apareceu e
+// deixa escolher em qual posição ela entra no contrato atual (Locador 1/2,
+// Locatário 1/2, Fiador 1/2) — sem depender da aba/categoria de origem.
+// Também lista as observações do contrato de origem para importar junto
+// (as que citam a pessoa já vêm marcadas).
+// ==========================================================
+const IE_ROTULOS = {
+  lcd: { masc: 'Locador',   fem: 'Locadora',  plural: 'Locadores',  secao: 'sec-locadores' },
+  lct: { masc: 'Locatário', fem: 'Locatária', plural: 'Locatários', secao: 'sec-locatarios' },
+  fdr: { masc: 'Fiador',    fem: 'Fiadora',   plural: 'Fiadores',   secao: 'sec-fiadores' },
+};
+const IE_SLOTS = ['lcd1', 'lcd2', 'lct1', 'lct2', 'fdr1', 'fdr2'];
+// Campos que pertencem a UMA pessoa (prefixo_sufixo). Os checkboxes ficam
+// sempre explícitos (true/false) pra não herdar "Não tem RG" de quem estava antes.
+const IE_SUFIXOS_PESSOA = ['sexo', 'nome', 'nacionalidade', 'nacionalidade_estrangeira', 'ec', 'natureza_juridica',
+  'prof', 'rg', 'rg_naotem', 'rg_orgao', 'cpf', 'tel', 'tel_naotem', 'email', 'email_naotem'];
+const IE_SUFIXOS_CHECKBOX = ['rg_naotem', 'tel_naotem', 'email_naotem'];
+// Linhas que o próprio app gera em "Gerar Observações" — não precisam ser
+// importadas (são recalculadas a partir dos dados da pessoa e do novo contrato)
+const IE_PADROES_OBS_AUTOMATICAS = [
+  /^[-•*]\s*(Locador(a)?|Locatári[oa]|Fiador(a)?)\s*\([^)]*\)\s+(n[ãa]o tem RG|com RG de outro|é )/i,
+  /^[-•*]\s*Possui\s+\d+\s+animal/i,
+  /^[-•*]\s*(Desconto de R\$|Carência de)/i,
+  /^[-•*]\s*Imóvel em área de inundação/i,
+  /^[-•*]\s*Locação sem imóvel Garantia/i,
+  /^-{2,}\s*OBSERVA[ÇC][ÕO]ES PADR[ÃA]O/i,
+];
+const IE_MAX_RESULTADOS = 40;
+
+let IE = { base: null, indice: [], resultados: [], sel: null, slot: null };
+
+function ieNormalizar(t) {
+  return (t || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
+}
+function ieSoDigitos(t) { return (t || '').toString().replace(/\D/g, ''); }
+function ieEscapeRegex(t) { return t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+function ieRotuloPapel(grp, n, num, sexo) {
+  const r = IE_ROTULOS[grp];
+  const rot = sexo === 'Feminino' ? r.fem : r.masc;
+  if (num === 'PJ') return n === 1 ? rot + ' (empresa)' : 'Representante — ' + r.masc;
+  if (num === '2') return rot + ' ' + n;
+  return rot;
+}
+function ieRotuloSlot(slot) {
+  return IE_ROTULOS[slot.slice(0, 3)].masc + ' ' + slot.slice(3);
+}
+
+// Monta a lista de "pessoas" do cadastro: uma entrada por (contrato, posição ocupada)
+function ieConstruirIndice(contratos) {
+  const indice = [];
+  (contratos || []).forEach(item => {
+    const c = item.campos || {};
+    ['lcd', 'lct', 'fdr'].forEach(grp => {
+      if (grp === 'fdr' && /cau[çc]/i.test(c.garantia || '')) return; // Caução: não tem fiador
+      const num = c['num_' + grp] || '';
+      [1, 2].forEach(n => {
+        const pref = grp + n;
+        const nome = (c[pref + '_nome'] || '').trim();
+        if (!nome) return;
+        if (n === 2 && num === '1') return; // pessoa 2 só existe com "2" (ou PJ = representante)
+        indice.push({
+          contrato: item, grp, n, pref, num, nome,
+          nomeNorm: ieNormalizar(nome),
+          cpfDigits: ieSoDigitos(c[pref + '_cpf']),
+          ehEmpresa: n === 1 && num === 'PJ',
+          papel: ieRotuloPapel(grp, n, num, c[pref + '_sexo']),
+        });
+      });
+    });
+  });
+  return indice;
+}
+
+// Endereço (rua/bairro/cidade) é guardado por GRUPO, não por pessoa: o 1º
+// endereço é da pessoa 1 (ou compartilhado quando são casados entre si) e o
+// 2º ("Endereço 2") é da pessoa 2 — ou do Representante, quando é PJ.
+function ieChavesEndereco(grp, n) {
+  const s = n === 2 ? '2' : '';
+  return grp === 'lct'
+    ? { rua: 'lct_rua_com' + s, bairro: 'lct_bairro_com' + s, cidade: 'lct_cidade_com' + s }
+    : { rua: grp + '_rua' + s, bairro: grp + '_bairro' + s, cidade: grp + '_cidade' + s };
+}
+function ieLerEndereco(campos, grp, n) {
+  const k = ieChavesEndereco(grp, n);
+  return { rua: campos[k.rua] || '', bairro: campos[k.bairro] || '', cidade: campos[k.cidade] || '' };
+}
+function ieEnderecoDaPessoa(e) {
+  const c = e.contrato.campos;
+  const a1 = ieLerEndereco(c, e.grp, 1);
+  if (e.n === 1) return a1;
+  const a2 = ieLerEndereco(c, e.grp, 2);
+  if (e.num === 'PJ') return a2;
+  if (e.num === '2' && c[e.grp + '_casados'] !== 'Sim' && a2.rua) return a2;
+  return a1;
+}
+function ieTextoEndereco(end) {
+  return [end.rua, end.bairro, end.cidade].filter(Boolean).join(' – ');
+}
+
+// ----- Observações do contrato de origem -----
+function ieDividirObservacoes(texto) {
+  const itens = [];
+  let atual = null;
+  String(texto || '').split(/\r?\n/).forEach(linha => {
+    if (!linha.trim()) { atual = null; return; }
+    const ehMarcador = /^[-•*]\s+\S/.test(linha); // bullet colado na margem = item novo
+    const indentada = /^\s+\S/.test(linha);
+    // Continua o item anterior quando ele é um texto corrido (ex.: "Locador X é
+    // representado por Y:" + a qualificação logo abaixo) ou quando a linha é
+    // recuada. Uma linha solta logo abaixo de um "- ..." sem recuo é outro item.
+    if (atual && !ehMarcador && (!atual.bullet || indentada)) { atual.texto += '\n' + linha; return; }
+    atual = { texto: linha, bullet: ehMarcador };
+    itens.push(atual);
+  });
+  return itens
+    .map(i => ({ texto: i.texto.replace(/\s+$/, ''), bullet: i.bullet }))
+    .filter(i => i.texto.trim() !== '' && i.texto.trim() !== '---' && i.texto.trim() !== '-');
+}
+function ieRelevante(textoItem, e) {
+  const t = ieNormalizar(textoItem);
+  if (!t) return false;
+  if (e.nomeNorm && t.includes(e.nomeNorm)) return true;
+  const palavras = e.nomeNorm.split(' ').filter(w => w.length >= 2 && !['de', 'da', 'do', 'dos', 'das', 'e'].includes(w));
+  const chave = e.ehEmpresa ? palavras.slice(0, 2).join(' ') : (palavras[0] || '');
+  if (chave.length >= 3 && new RegExp('(^|[^a-z0-9])' + ieEscapeRegex(chave) + '([^a-z0-9]|$)').test(t)) return true;
+  if (e.cpfDigits.length >= 11 && ieSoDigitos(textoItem).includes(e.cpfDigits)) return true;
+  return false;
+}
+function ieObsDaEntrada(e) {
+  if (e._obs) return e._obs;
+  const todos = ieDividirObservacoes(e.contrato.campos.observacoes);
+  const itens = todos.filter(i => !IE_PADROES_OBS_AUTOMATICAS.some(p => p.test(i.texto)));
+  itens.forEach(i => { i.relevante = ieRelevante(i.texto, e); });
+  e._obs = { itens, automaticas: todos.length - itens.length, relevantes: itens.filter(i => i.relevante).length };
+  return e._obs;
+}
+
+// ----- Abrir / fechar / carregar -----
+async function ieCarregar() {
+  const status = document.getElementById('ie_status');
+  status.className = 'ie-status';
+  status.textContent = 'Carregando cadastro...';
+  const dados = await carregarCadastroContratos();
+  if (!dados || !dados.length) {
+    IE.indice = []; IE.base = null;
+    status.className = 'ie-status erro';
+    status.innerHTML = '⚠️ Não consegui carregar o cadastro. <a href="#" onclick="ieTentarNovamente(); return false;" style="color:inherit;text-decoration:underline;font-weight:700;">Tentar novamente</a>';
+    return;
+  }
+  if (IE.base !== dados) { IE.indice = ieConstruirIndice(dados); IE.base = dados; }
+  status.textContent = `${IE.indice.length} pessoa(s)/empresa(s) encontradas em ${dados.length} contrato(s). Digite o nome para buscar.`;
+  ieBuscar();
+}
+function ieTentarNovamente() {
+  cadastroDados = null;
+  cadastroCarregandoPromise = null;
+  ieCarregar();
+}
+function abrirImportEspecial() {
+  document.getElementById('ie_overlay').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  document.getElementById('ie_busca').value = '';
+  ieLimparSelecao();
+  const box = document.getElementById('ie_resultados');
+  box.style.display = 'none';
+  box.innerHTML = '';
+  document.getElementById('ie_busca').focus();
+  ieCarregar();
+}
+function fecharImportEspecial() {
+  document.getElementById('ie_overlay').style.display = 'none';
+  document.body.style.overflow = '';
+  ieLimparSelecao();
+}
+document.addEventListener('keydown', ev => {
+  if (ev.key === 'Escape' && document.getElementById('ie_overlay').style.display !== 'none') fecharImportEspecial();
+});
+
+// ----- Busca -----
+function ieFiltrar(termo) {
+  const t = ieNormalizar(termo);
+  const tokens = t.split(' ').filter(Boolean);
+  const soNumeros = /^[\d.\-\/\s]+$/.test(termo.trim());
+  const dig = ieSoDigitos(termo);
+  const achados = IE.indice.filter(e => soNumeros
+    ? (dig.length >= 4 && e.cpfDigits.includes(dig))
+    : tokens.every(tok => e.nomeNorm.includes(tok)));
+  const peso = e => e.nomeNorm === t ? 0 : (e.nomeNorm.startsWith(t) ? 1 : 2);
+  achados.sort((a, b) => peso(a) - peso(b) ||
+    (b.contrato.contractId || '').localeCompare(a.contrato.contractId || '', 'pt-BR', { numeric: true }));
+  return { lista: achados.slice(0, IE_MAX_RESULTADOS), total: achados.length };
+}
+
+function ieBuscar() {
+  const termo = document.getElementById('ie_busca').value;
+  const box = document.getElementById('ie_resultados');
+  ieLimparSelecao();
+  if (ieNormalizar(termo).length < 2) { IE.resultados = []; box.style.display = 'none'; box.innerHTML = ''; return; }
+  const { lista, total } = ieFiltrar(termo);
+  IE.resultados = lista;
+  if (!lista.length) {
+    box.innerHTML = '<div class="ie-vazio">Ninguém com esse nome no cadastro.</div>';
+  } else {
+    box.innerHTML = lista.map((e, idx) => {
+      const obs = ieObsDaEntrada(e);
+      let tagObs = '';
+      if (obs.relevantes) tagObs = `<span class="ie-badge-obs">📌 ${obs.relevantes} observação(ões) citam esta pessoa</span>`;
+      else if (obs.itens.length) tagObs = `<span class="ie-badge-obs">📝 ${obs.itens.length} observação(ões) no contrato</span>`;
+      const end = e.contrato.enderecoImovel || 'Endereço não informado';
+      return `<div class="ie-res" data-idx="${idx}" onclick="ieSelecionar(${idx})">` +
+        `<strong>${escapeHtmlBusca(e.nome)}</strong><span class="ie-badge ${e.grp}">${escapeHtmlBusca(e.papel)}</span>${tagObs}` +
+        `<span class="ie-res-sub">${escapeHtmlBusca(e.contrato.contractId || '—')} — ${escapeHtmlBusca(end)}</span></div>`;
+    }).join('') + (total > lista.length
+      ? `<div class="ie-vazio">Mostrando os ${lista.length} contratos mais recentes de ${total}. Digite mais do nome para refinar.</div>` : '');
+  }
+  box.style.display = 'block';
+}
+
+// ----- Seleção + painel de detalhes -----
+function ieLimparSelecao() {
+  IE.sel = null;
+  IE.slot = null;
+  const det = document.getElementById('ie_detalhe');
+  if (det) { det.style.display = 'none'; det.innerHTML = ''; }
+  document.querySelectorAll('.ie-res.selecionado').forEach(el => el.classList.remove('selecionado'));
+}
+
+// Quem está hoje na posição (só conta se a posição está realmente em uso no formulário)
+function ieOcupanteAtual(slot) {
+  const grp = slot.slice(0, 3), n = parseInt(slot.slice(3), 10);
+  const num = document.getElementById('num_' + grp)?.value || '';
+  if (n === 2 && num !== '2' && num !== 'PJ') return '';
+  if (grp === 'fdr' && document.getElementById('garantia')?.value !== 'FIADOR') return '';
+  return (document.getElementById(slot + '_nome')?.value || '').trim();
+}
+
+function ieSelecionar(idx) {
+  const e = IE.resultados[idx];
+  if (!e) return;
+  IE.sel = e;
+  IE.slot = null;
+  document.querySelectorAll('.ie-res').forEach(el => el.classList.toggle('selecionado', parseInt(el.dataset.idx, 10) === idx));
+  ieRenderDetalhe();
+}
+
+function ieRenderDetalhe() {
+  const e = IE.sel;
+  const det = document.getElementById('ie_detalhe');
+  const c = e.contrato.campos, p = e.pref, esc = escapeHtmlBusca;
+  const linha = (rot, val) => val ? `<div><b>${rot}:</b> ${esc(val)}</div>` : '';
+  const rg = [c[p + '_rg'], c[p + '_rg_orgao']].filter(Boolean).join(' – ');
+
+  const dadosHtml =
+    linha(e.ehEmpresa ? 'CNPJ' : 'CPF', c[p + '_cpf']) +
+    linha(e.ehEmpresa ? 'Natureza jurídica' : 'Estado civil', e.ehEmpresa ? c[p + '_natureza_juridica'] : c[p + '_ec']) +
+    linha(e.ehEmpresa ? 'Atividade' : 'Profissão', c[p + '_prof']) +
+    linha(e.ehEmpresa ? 'NIRE' : 'RG', rg) +
+    linha('Telefone', c[p + '_tel']) + linha('E-mail', c[p + '_email']) +
+    linha(e.ehEmpresa ? 'Sede' : 'Endereço', ieTextoEndereco(ieEnderecoDaPessoa(e)));
+
+  const slotsHtml = IE_SLOTS.map(slot => {
+    const ocup = ieOcupanteAtual(slot);
+    const desab = e.ehEmpresa && slot.endsWith('2');
+    const sub = desab ? 'empresa só entra na 1ª posição' : (ocup ? 'substitui: ' + ocup : 'vago');
+    return `<button type="button" class="ie-slot${desab ? ' desabilitado' : ''}" data-slot="${slot}" ${desab ? 'disabled' : ''} onclick="ieEscolherSlot('${slot}')">` +
+      `<b>${ieRotuloSlot(slot)}</b><span>${esc(sub)}</span></button>`;
+  }).join('');
+
+  const nomeRep = e.ehEmpresa ? (c[e.grp + '2_nome'] || '') : '';
+  const repHtml = nomeRep
+    ? `<label class="ie-check"><input type="checkbox" id="ie_com_rep" checked> <span>Trazer também o Representante desta empresa (<b>${esc(nomeRep)}</b>) para a 2ª posição do mesmo grupo</span></label>` : '';
+
+  const obs = ieObsDaEntrada(e);
+  let obsHtml;
+  if (obs.itens.length) {
+    const itensHtml = obs.itens.map((i, k) =>
+      `<label class="ie-obs-item"><input type="checkbox" id="ie_obs_${k}" ${i.relevante ? 'checked' : ''}>` +
+      `<span class="ie-obs-texto">${esc(i.texto)}${i.relevante ? '<span class="ie-obs-tag">cita esta pessoa</span>' : ''}</span></label>`).join('');
+    const notaAuto = obs.automaticas ? `<div class="ie-nota" style="margin:6px 0 0">${obs.automaticas} linha(s) automática(s) (RG, PJ, animais etc.) não aparecem aqui: são geradas de novo em "Gerar Observações".</div>` : '';
+    obsHtml = `<div class="ie-obs"><div class="ie-secao-titulo">📌 Observações do contrato ${esc(e.contrato.contractId || '')} — marque as que devem ir para o contrato novo</div>${itensHtml}${notaAuto}</div>`;
+  } else {
+    obsHtml = `<div class="ie-nota">Este contrato não tem observações para importar${obs.automaticas ? ' (só linhas automáticas, geradas de novo em "Gerar Observações")' : ''}.</div>`;
+  }
+
+  det.innerHTML =
+    `<div class="ie-pessoa"><div class="ie-pessoa-nome">${esc(e.nome)}</div>` +
+    `<div class="ie-pessoa-origem">Era <b>${esc(e.papel)}</b> no contrato ${esc(e.contrato.contractId || '—')} — ${esc(e.contrato.enderecoImovel || '')}</div>` +
+    `<div class="ie-dados">${dadosHtml}</div></div>` +
+    `<div class="ie-secao-titulo">Colocar neste contrato como:</div><div class="ie-slots">${slotsHtml}</div>` +
+    repHtml + obsHtml +
+    `<div class="ie-acoes"><button type="button" class="ie-btn-cancelar" onclick="fecharImportEspecial()">Cancelar</button>` +
+    `<button type="button" class="btn-importar-cadastro" id="ie_btn_importar" disabled onclick="ieImportar()">⬇ Escolha a posição</button></div>`;
+  det.style.display = 'block';
+  det.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+function ieEscolherSlot(slot) {
+  IE.slot = slot;
+  document.querySelectorAll('#ie_detalhe .ie-slot').forEach(b => b.classList.toggle('selecionado', b.dataset.slot === slot));
+  const btn = document.getElementById('ie_btn_importar');
+  btn.disabled = false;
+  btn.textContent = '⬇ Importar como ' + ieRotuloSlot(slot);
+}
+
+// ----- Montagem dos dados e aplicação -----
+function ieCopiarPessoa(campos, prefOrigem, prefDestino, dados) {
+  IE_SUFIXOS_PESSOA.forEach(suf => {
+    const val = campos[prefOrigem + '_' + suf];
+    dados[prefDestino + '_' + suf] = IE_SUFIXOS_CHECKBOX.includes(suf) ? !!val : (val === undefined ? '' : val);
+  });
+}
+function ieEscreverEndereco(dados, grp, n, end) {
+  const k = ieChavesEndereco(grp, n);
+  dados[k.rua] = end.rua; dados[k.bairro] = end.bairro; dados[k.cidade] = end.cidade;
+}
+
+function ieImportar() {
+  const e = IE.sel, destino = IE.slot;
+  if (!e || !destino) return;
+  const c = e.contrato.campos;
+  const grpD = destino.slice(0, 3), nD = parseInt(destino.slice(3), 10);
+  const rotuloSlot = ieRotuloSlot(destino);
+  const numAtual = document.getElementById('num_' + grpD).value;
+  const comRep = !!document.getElementById('ie_com_rep')?.checked && !!c[e.grp + '2_nome'];
+
+  // --- confirmações (juntas numa só pergunta) ---
+  const confirmar = [];
+  const ocupante = ieOcupanteAtual(destino);
+  if (ocupante) confirmar.push(`${rotuloSlot} já está preenchido com "${ocupante}" — será substituído.`);
+  if (!e.ehEmpresa && nD === 1 && numAtual === 'PJ') confirmar.push(`O grupo de ${IE_ROTULOS[grpD].plural} está como Pessoa Jurídica — importar uma pessoa física na 1ª posição desfaz o modo PJ.`);
+  if (e.ehEmpresa && numAtual && numAtual !== 'PJ' && (ocupante || ieOcupanteAtual(grpD + '2'))) confirmar.push(`O grupo de ${IE_ROTULOS[grpD].plural} tem pessoa(s) física(s) preenchida(s) — importar a empresa troca o grupo para Pessoa Jurídica.`);
+  if (grpD === 'fdr' && document.getElementById('garantia').value === 'CAUÇÃO') confirmar.push('A garantia deste contrato está como CAUÇÃO — importar um fiador troca a garantia para FIADOR.');
+  if (confirmar.length && !confirm('Atenção:\n\n• ' + confirmar.join('\n• ') + '\n\nContinuar?')) return;
+
+  // --- quantidade de pessoas do grupo de destino ---
+  let numNovo;
+  if (e.ehEmpresa) numNovo = 'PJ';
+  else if (nD === 1) numNovo = numAtual === '2' ? '2' : '1';
+  else numNovo = numAtual === 'PJ' ? 'PJ' : '2';
+
+  const dados = {};
+  const avisos = [];
+  dados['num_' + grpD] = numNovo;
+  if (grpD === 'fdr') dados.garantia = 'FIADOR';
+
+  // Mexer em 1 pessoa de um casal desfaz o "casados entre si" (e a trava do Estado Civil)
+  if (numNovo === '2' && document.getElementById(grpD + '_casados').value === 'Sim') {
+    dados[grpD + '_casados'] = '';
+    avisos.push(`"Casados entre si?" dos ${IE_ROTULOS[grpD].plural} foi zerado — responda de novo.`);
+  }
+
+  // --- a pessoa (e, se for empresa, o representante) ---
+  ieCopiarPessoa(c, e.pref, destino, dados);
+  ieEscreverEndereco(dados, grpD, nD === 1 ? 1 : 2, ieEnderecoDaPessoa(e));
+  if (e.ehEmpresa && comRep) {
+    ieCopiarPessoa(c, e.grp + '2', grpD + '2', dados);
+    ieEscreverEndereco(dados, grpD, 2, ieLerEndereco(c, e.grp, 2));
+  }
+
+  if (!e.ehEmpresa && /^casad/i.test(c[e.pref + '_ec'] || '') && c[e.grp + '_casados'] === 'Sim') {
+    avisos.push(`Estado civil veio como "${c[e.pref + '_ec']}" porque, no contrato de origem, ${e.nome.split(' ')[0]} era casad${(c[e.pref + '_sexo'] === 'Feminino') ? 'a' : 'o'} com o outro ${IE_ROTULOS[e.grp].masc.toLowerCase()} do mesmo contrato. Confira se continua correto.`);
+  }
+
+  aplicarDadosFormulario(dados);
+  reformatarCamposImportados(Object.fromEntries(Object.entries(dados).filter(([, val]) => val !== '' && val !== false)));
+
+  // --- observações marcadas: somam ao final do que já está escrito ---
+  const obs = ieObsDaEntrada(e);
+  const marcadas = obs.itens.filter((_, k) => document.getElementById('ie_obs_' + k)?.checked);
+  const ta = document.getElementById('observacoes');
+  let atual = ta.value.trim();
+  if (atual === '---') atual = '';
+  const novas = marcadas.filter(i => !atual.includes(i.texto));
+  let blocoNovo = '';
+  novas.forEach((i, k) => { blocoNovo += (k === 0 ? '' : (novas[k - 1].bullet && i.bullet ? '\n' : '\n\n')) + i.texto; });
+  if (blocoNovo) {
+    ta.value = atual ? atual + '\n\n' + blocoNovo : blocoNovo;
+  }
+  atualizarAvisoPendencias();
+
+  fecharImportEspecial();
+  const secao = document.getElementById(IE_ROTULOS[grpD].secao);
+  if (secao) secao.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  const partes = [`✨ ${e.nome.split(' ')[0]} importado(a) como ${rotuloSlot}`];
+  if (comRep) partes.push('com o representante');
+  if (marcadas.length) partes.push(`${novas.length} observação(ões) adicionada(s)`);
+  mostrarToast(partes.join(' — ') + '. Revise os dados!');
+  if (avisos.length) alert('Confira:\n\n• ' + avisos.join('\n• '));
+}
 
 // ==========================================================
 // DROPZONE DE IMPORTAÇÃO UNIVERSAL
