@@ -567,6 +567,8 @@ header p { font-size: 0.75rem; color: #a8bce8; font-weight: 300; margin-top: 2px
   margin: -4px 0 14px;
 }
 
+.casamento-lei-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.casamento-lei-pills .confirm-pill { white-space: normal; }
 .confirm-pill-compacta {
   padding: 4px 10px !important;
   font-size: 0.72rem !important;
@@ -711,6 +713,13 @@ header p { font-size: 0.75rem; color: #a8bce8; font-weight: 300; margin-top: 2px
 .ie-acoes { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
 .ie-btn-cancelar { padding: 8px 18px; border: 1.5px solid var(--fundo3); border-radius: 20px; background: #fff; color: var(--texto2); font-weight: 700; font-size: 0.8rem; cursor: pointer; }
 .ie-btn-cancelar:hover { border-color: var(--primario2); }
+.ie-banner { background: #fff8e1; border: 1px solid #e8d48a; border-radius: 10px; padding: 10px 14px; margin-bottom: 12px; font-size: 0.84rem; color: var(--texto); }
+.ie-banner.casal { background: #fde8f0; border-color: #e9a9c4; }
+.ie-pessoas-duas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.ie-pessoa-check { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 0.82rem; font-weight: 700; color: var(--primario); cursor: pointer; }
+.ie-pessoa-check input { width: 17px; height: 17px; accent-color: var(--verde); cursor: pointer; }
+.ie-badge-casal { display: inline-block; margin-left: 6px; font-size: 0.72rem; font-weight: 700; color: #b0346b; }
+@media (max-width: 700px) { .ie-pessoas-duas { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .ie-slots { grid-template-columns: 1fr; } }
 
 .busca-cadastro-input-wrap { position: relative; }
@@ -905,7 +914,7 @@ header p { font-size: 0.75rem; color: #a8bce8; font-weight: 300; margin-top: 2px
 <header>
   <div class="icon-badge">📋</div>
   <div>
-    <h1>Gerador de Contratos de Locação <span class="versao">v92</span></h1>
+    <h1>Gerador de Contratos de Locação <span class="versao">v93</span></h1>
     <p>Preencha os campos e gere o Excel no formato "Contratos Locação"</p>
   </div>
 </header>
@@ -961,7 +970,7 @@ header p { font-size: 0.75rem; color: #a8bce8; font-weight: 300; margin-top: 2px
     </div>
     <div class="busca-cadastro-status" id="busca_cadastro_status">Carregando cadastro...</div>
     <div class="caixa-observacoes-import" id="caixa_observacoes_import" style="display:none">
-      <div class="caixa-observacoes-import-titulo">📌 Observações do contrato importado (não entra sozinho no contrato — só para conferência)</div>
+      <div class="caixa-observacoes-import-titulo">📌 Observações do contrato importado — marque as que devem ir para o contrato novo</div>
       <div class="caixa-observacoes-import-texto" id="texto_observacoes_import"></div>
     </div>
   </div>
@@ -1259,6 +1268,10 @@ header p { font-size: 0.75rem; color: #a8bce8; font-weight: 300; margin-top: 2px
       <div class="field" id="lcd-data-casamento-field" style="display:none">
         <label>Data do Casamento</label>
         <input id="lcd_data_casamento" value="" placeholder="Ex.: 01/01/2001" oninput="formatarDataDigitada(this)" inputmode="numeric">
+        <div class="casamento-lei-pills">
+          <label class="confirm-pill confirm-pill-compacta" id="lcd_casamento_lei_vig_pill"><input type="checkbox" id="lcd_casamento_lei_vig" onchange="handleCasamentoLeiChange('lcd','vig')"> Na vigência da Lei 6.515/77</label>
+          <label class="confirm-pill confirm-pill-compacta" id="lcd_casamento_lei_ant_pill"><input type="checkbox" id="lcd_casamento_lei_ant" onchange="handleCasamentoLeiChange('lcd','ant')"> Antes da vigência da Lei 6.515/77</label>
+        </div>
       </div>
 
       <div id="lcd1-block" style="display:none;grid-column:1/-1">
@@ -1365,6 +1378,10 @@ header p { font-size: 0.75rem; color: #a8bce8; font-weight: 300; margin-top: 2px
       <div class="field" id="lct-data-casamento-field" style="display:none">
         <label>Data do Casamento</label>
         <input id="lct_data_casamento" value="" placeholder="Ex.: 01/01/2001" oninput="formatarDataDigitada(this)" inputmode="numeric">
+        <div class="casamento-lei-pills">
+          <label class="confirm-pill confirm-pill-compacta" id="lct_casamento_lei_vig_pill"><input type="checkbox" id="lct_casamento_lei_vig" onchange="handleCasamentoLeiChange('lct','vig')"> Na vigência da Lei 6.515/77</label>
+          <label class="confirm-pill confirm-pill-compacta" id="lct_casamento_lei_ant_pill"><input type="checkbox" id="lct_casamento_lei_ant" onchange="handleCasamentoLeiChange('lct','ant')"> Antes da vigência da Lei 6.515/77</label>
+        </div>
       </div>
 
       <div id="lct1-block" style="display:none;grid-column:1/-1">
@@ -1471,6 +1488,10 @@ header p { font-size: 0.75rem; color: #a8bce8; font-weight: 300; margin-top: 2px
       <div class="field" id="fdr-data-casamento-field" style="display:none">
         <label>Data do Casamento</label>
         <input id="fdr_data_casamento" value="" placeholder="Ex.: 01/01/2001" oninput="formatarDataDigitada(this)" inputmode="numeric">
+        <div class="casamento-lei-pills">
+          <label class="confirm-pill confirm-pill-compacta" id="fdr_casamento_lei_vig_pill"><input type="checkbox" id="fdr_casamento_lei_vig" onchange="handleCasamentoLeiChange('fdr','vig')"> Na vigência da Lei 6.515/77</label>
+          <label class="confirm-pill confirm-pill-compacta" id="fdr_casamento_lei_ant_pill"><input type="checkbox" id="fdr_casamento_lei_ant" onchange="handleCasamentoLeiChange('fdr','ant')"> Antes da vigência da Lei 6.515/77</label>
+        </div>
       </div>
 
       <div id="fdr1-block" style="display:none;grid-column:1/-1">
@@ -2347,13 +2368,25 @@ function calcularLinhasObservacoesPadrao() {
   return linhas;
 }
 
+// Normaliza uma linha de observação só para COMPARAR (sem acento, sem maiúscula,
+// sem "- " no começo, sem ponto final, espaços colapsados) — duas linhas que só
+// diferem nisso são consideradas o mesmo texto.
+function normalizarLinhaObservacao(l) {
+  return (l || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+    .replace(/^\s*[-\u2022*]+\s*/, '').replace(/\s+/g, ' ').replace(/[.\s]+$/, '').trim();
+}
+
 // Junta o texto manual com as linhas padrão calculadas agora, sem duplicar
 // nem apagar o que a pessoa escreveu — usada tanto pelo botão "Gerar
 // Observações" quanto silenciosamente antes de gerar o Excel. Não usa mais
 // nenhum texto de cabeçalho/marcador visível: guarda só em memória (nesta
 // mesma sessão da página) qual foi o último bloco automático inserido, pra
-// conseguir trocá-lo pelo novo sem duplicar as linhas nem mexer no texto
-// manual escrito acima.
+// conseguir trocá-lo pelo novo sem mexer no texto manual escrito acima.
+//
+// Além disso, NUNCA escreve uma linha que já exista no texto (mesmo que tenha
+// vindo de uma importação, de um rascunho antigo ou de outra sessão em que o
+// app não "lembrava" do bloco anterior): confere linha a linha antes de somar.
+// Devolve { adicionadas, jaExistiam } só para o aviso na tela.
 let ULTIMO_BLOCO_OBS_AUTO = '';
 function sincronizarObservacoesPadrao() {
   const linhas = calcularLinhasObservacoesPadrao();
@@ -2372,18 +2405,31 @@ function sincronizarObservacoesPadrao() {
   textoManual = textoManual.replace(/\n{3,}/g, '\n\n').trim();
   if (textoManual === '---') textoManual = ''; // "---" é só o marcador de campo vazio, não texto de verdade
 
-  const novoBloco = linhas.join('\n');
+  // Só entram as linhas que ainda NÃO estão no texto (nem repetidas entre si)
+  const jaTem = new Set(textoManual.split('\n').map(normalizarLinhaObservacao).filter(Boolean));
+  const linhasNovas = [];
+  let jaExistiam = 0;
+  linhas.forEach(l => {
+    const chave = normalizarLinhaObservacao(l);
+    if (jaTem.has(chave)) { jaExistiam++; return; }
+    jaTem.add(chave);
+    linhasNovas.push(l);
+  });
+
+  const novoBloco = linhasNovas.join('\n');
   const partes = [];
   if (textoManual) partes.push(textoManual);
   if (novoBloco) partes.push(novoBloco);
   textarea.value = partes.length ? partes.join('\n\n') : '---';
   ULTIMO_BLOCO_OBS_AUTO = novoBloco;
+  return { adicionadas: linhasNovas.length, jaExistiam };
 }
 
 function gerarObservacoesPadrao() {
-  sincronizarObservacoesPadrao();
+  const r = sincronizarObservacoesPadrao();
   atualizarAvisoPendencias();
-  mostrarToast('📝 Texto padrão atualizado nas Observações!');
+  if (r.adicionadas === 0 && r.jaExistiam > 0) mostrarToast('📝 Essas observações já estavam no texto — nada foi repetido.');
+  else mostrarToast('📝 Texto padrão atualizado nas Observações!');
 }
 
 function formatarContaCaucao(el) {
@@ -2638,6 +2684,53 @@ function atualizarModoPJ(grupo) {
   if (isPJ && endereco2Ativo) endereco2Ativo.style.display = 'block';
   atualizarVisibilidadeEndereco2(grupo);
 
+  atualizarAvisoPendencias();
+}
+
+// === Casamento sem data certa (Lei 6.515/77) ===
+// Quando a data do casamento não é conhecida, em vez de digitar a data a pessoa
+// marca uma das duas opções abaixo do campo. O campo de data é travado com o
+// texto da opção (assim ele vai para o Excel/cadastro e volta na importação, sem
+// precisar de nenhum outro campo) e o contrato sai com a menção à lei no lugar
+// de "no dia xx/xx/xxxx".
+const CASAMENTO_LEI = {
+  vig: { valor: 'NA VIGÊNCIA DA LEI 6.515/77',        texto: 'na vigência da Lei 6.515/77' },
+  ant: { valor: 'ANTES DA VIGÊNCIA DA LEI 6.515/77',  texto: 'antes da vigência da Lei 6.515/77' },
+};
+function semAcentoMaiusculo(t) {
+  return (t || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().replace(/\s+/g, ' ').trim();
+}
+// Devolve 'vig' | 'ant' se o valor do campo de data for uma das duas opções; senão null
+function chaveCasamentoLei(valorCampo) {
+  const v = semAcentoMaiusculo(valorCampo);
+  return Object.keys(CASAMENTO_LEI).find(k => semAcentoMaiusculo(CASAMENTO_LEI[k].valor) === v) || null;
+}
+// Texto que entra no contrato no lugar de "no dia xx/xx/xxxx" (ou null se for uma data normal)
+function textoCasamentoSemData(valorCampo) {
+  const k = chaveCasamentoLei(valorCampo);
+  return k ? CASAMENTO_LEI[k].texto : null;
+}
+// Deixa pills + trava do campo de data coerentes com o valor atual do campo
+function atualizarCasamentoLei(grupo) {
+  const campo = document.getElementById(grupo + '_data_casamento');
+  if (!campo) return;
+  const k = chaveCasamentoLei(campo.value);
+  ['vig', 'ant'].forEach(x => {
+    const chk = document.getElementById(`${grupo}_casamento_lei_${x}`);
+    const pill = document.getElementById(`${grupo}_casamento_lei_${x}_pill`);
+    if (chk) chk.checked = (k === x);
+    if (pill) pill.classList.toggle('marcada', k === x);
+  });
+  campo.readOnly = !!k;
+  campo.classList.toggle('campo-confirmado', !!k);
+}
+function handleCasamentoLeiChange(grupo, qual) {
+  const campo = document.getElementById(grupo + '_data_casamento');
+  const chk = document.getElementById(`${grupo}_casamento_lei_${qual}`);
+  if (chk.checked) campo.value = CASAMENTO_LEI[qual].valor;
+  else if (chaveCasamentoLei(campo.value)) campo.value = '';
+  campo.classList.remove('campo-erro');
+  atualizarCasamentoLei(grupo);
   atualizarAvisoPendencias();
 }
 
@@ -3598,7 +3691,7 @@ function textoQualificacao2Pessoas(pessoa1, pessoa2, casadosEntreSi, regime, dat
       `, e ${termoConjuge} `;
     const meio2 = `, ${pessoa2.nacionalidade}, ${pessoa2.profissao}, ${portador(pessoa2)} ` +
       textoDocumentoRgCpf(pessoa2.nacionalidade, pessoa2.rg, pessoa2.cpf, inscrito(pessoa2), pessoa2.orgaoEmissorUF) +
-      `, casados sob o regime da ${regime} no dia ${dataCasamento}` +
+      `, casados sob o regime da ${regime} ${textoCasamentoSemData(dataCasamento) || ('no dia ' + dataCasamento)}` +
       (omitirEndereco ? '.' : `, residentes na ${enderecoGrupo}.`);
     return [{ negrito: nome1 }, { texto: meio1 }, { negrito: nome2 }, { texto: meio2 }];
   }
@@ -5583,6 +5676,8 @@ function aplicarDadosFormulario(dados) {
     if (pill) pill.classList.toggle('marcada', chk.checked);
   });
 
+  ['lcd', 'lct', 'fdr'].forEach(atualizarCasamentoLei);
+
   ['lcd1', 'lcd2', 'lct1', 'lct2', 'fdr1', 'fdr2'].forEach(p => {
     ['tel', 'email'].forEach(tipo => {
       const campoId = p + '_' + tipo;
@@ -6470,18 +6565,42 @@ function selecionarResultadoBusca(idx) {
 
 // Chamado ao clicar no botão "Importar": aplica o resultado selecionado, considerando as categorias marcadas
 // Mostra (ou esconde) o quadro amarelo com as Observações do contrato importado do cadastro
+let IMPORT_OBS_ITENS = [];
 function exibirObservacoesImportadas(obs) {
   const caixa = document.getElementById('caixa_observacoes_import');
   const texto = document.getElementById('texto_observacoes_import');
   const valor = (obs || '').toString().trim();
+  IMPORT_OBS_ITENS = [];
   if (valor && valor !== '---' && valor !== '—' && valor !== '-') {
-    texto.textContent = valor;
-    caixa.style.display = 'block';
-  } else {
-    texto.textContent = '';
-    caixa.style.display = 'none';
+    IMPORT_OBS_ITENS = ieDividirObservacoes(valor).map(i => ({
+      texto: i.texto, bullet: i.bullet,
+      automatica: IE_PADROES_OBS_AUTOMATICAS.some(p => p.test(i.texto)),
+    }));
   }
+  if (!IMPORT_OBS_ITENS.length) {
+    texto.innerHTML = '';
+    caixa.style.display = 'none';
+    return;
+  }
+  texto.innerHTML = IMPORT_OBS_ITENS.map((i, k) =>
+    `<label class="ie-obs-item"><input type="checkbox" id="imp_obs_${k}">` +
+    `<span class="ie-obs-texto">${escapeHtmlBusca(i.texto)}${i.automatica ? '<span class="ie-obs-tag">automática — gerada de novo em "Gerar Observações"</span>' : ''}</span></label>`).join('');
+  caixa.style.display = 'block';
+  reaplicarPadraoObsImport();
 }
+
+// Marcação padrão: com a categoria "Observações" ligada, vêm marcadas as observações
+// manuais (as automáticas ficam desmarcadas); com ela desligada, nenhuma vem marcada.
+function reaplicarPadraoObsImport() {
+  const ligada = categoriasSelecionadas().includes('OBSERVACOES');
+  IMPORT_OBS_ITENS.forEach((i, k) => {
+    const cb = document.getElementById('imp_obs_' + k);
+    if (cb) cb.checked = ligada && !i.automatica;
+  });
+}
+document.getElementById('buscaCategorias').addEventListener('click', function (ev) {
+  if (ev.target.closest('.categoria-btn')) reaplicarPadraoObsImport();
+});
 
 function importarResultadoSelecionado() {
   if (resultadoSelecionadoIdx === null) {
@@ -6492,8 +6611,9 @@ function importarResultadoSelecionado() {
   if (!item) return;
 
   const categorias = categoriasSelecionadas();
-  if (categorias.length === 0) {
-    alert('Selecione ao menos uma categoria (Imóvel, Locador, Locatário, Encargos, Garantia, Fiadores, Testemunhas ou Observações) antes de importar.');
+  const obsMarcadas = IMPORT_OBS_ITENS.filter((_, k) => document.getElementById('imp_obs_' + k)?.checked);
+  if (categorias.length === 0 && obsMarcadas.length === 0) {
+    alert('Selecione ao menos uma categoria (Imóvel, Locador, Locatário, Encargos, Garantia, Fiadores, Testemunhas ou Observações) ou marque alguma observação antes de importar.');
     return;
   }
 
@@ -6504,33 +6624,41 @@ function importarResultadoSelecionado() {
   Object.keys(item.campos).forEach(id => {
     if (idsPermitidos.has(id)) dadosParaAplicar[id] = item.campos[id];
   });
+  // Observações são tratadas à parte (só as marcadas entram, somando ao texto atual)
+  delete dadosParaAplicar.observacoes;
 
-  // Observações não substitui o que já está escrito — soma ao final
-  let observacoesParaSomar = null;
-  if (dadosParaAplicar.observacoes) {
-    observacoesParaSomar = dadosParaAplicar.observacoes;
-    delete dadosParaAplicar.observacoes;
+  const qtd = Object.keys(dadosParaAplicar).length;
+  if (qtd > 0) {
+    aplicarDadosFormulario(dadosParaAplicar);
+    reformatarCamposImportados(dadosParaAplicar);
   }
 
-  const qtd = Object.keys(dadosParaAplicar).length + (observacoesParaSomar ? 1 : 0);
-  aplicarDadosFormulario(dadosParaAplicar);
-  reformatarCamposImportados(dadosParaAplicar);
-
-  if (observacoesParaSomar) {
+  let obsAdicionadas = 0;
+  if (obsMarcadas.length) {
     const textareaObs = document.getElementById('observacoes');
-    const textoAtual = textareaObs.value.trim();
-    textareaObs.value = textoAtual ? textoAtual + '\n\n' + observacoesParaSomar : observacoesParaSomar;
+    let textoAtual = textareaObs.value.trim();
+    if (textoAtual === '---') textoAtual = '';
+    const jaTem = new Set(textoAtual.split('\n').map(normalizarLinhaObservacao).filter(Boolean));
+    const novas = obsMarcadas.filter(i => {
+      const linhas = i.texto.split('\n').map(normalizarLinhaObservacao).filter(Boolean);
+      return linhas.some(l => !jaTem.has(l));
+    });
+    let bloco = '';
+    novas.forEach((i, k) => { bloco += (k === 0 ? '' : (novas[k - 1].bullet && i.bullet ? '\n' : '\n\n')) + i.texto; });
+    if (bloco) textareaObs.value = textoAtual ? textoAtual + '\n\n' + bloco : bloco;
+    obsAdicionadas = novas.length;
     atualizarAvisoPendencias();
   }
-
-  exibirObservacoesImportadas(item.campos.observacoes);
 
   document.getElementById('busca_cadastro').value = (item.contractId ? item.contractId + ' — ' : '') + item.enderecoImovel;
   document.getElementById('busca_cadastro_resultados').style.display = 'none';
   resultadoSelecionadoIdx = null;
   atualizarBotaoImportar();
 
-  mostrarToast(`🔍 ${qtd} campo(s) preenchido(s) a partir do cadastro (${categorias.length} categoria(s))!`);
+  const partesToast = [];
+  if (qtd) partesToast.push(`${qtd} campo(s) preenchido(s) (${categorias.length} categoria(s))`);
+  if (obsMarcadas.length) partesToast.push(obsAdicionadas ? `${obsAdicionadas} observação(ões) adicionada(s)` : 'observações já estavam no texto');
+  mostrarToast('🔍 ' + partesToast.join(' + ') + ' a partir do cadastro!');
 }
 
 document.getElementById('busca_cadastro').addEventListener('input', async function () {
@@ -6587,7 +6715,7 @@ const IE_PADROES_OBS_AUTOMATICAS = [
 ];
 const IE_MAX_RESULTADOS = 40;
 
-let IE = { base: null, indice: [], resultados: [], sel: null, slot: null };
+let IE = { base: null, indice: [], resultados: [], sel: null, slot: null, ativa: null, marcados: [] };
 
 function ieNormalizar(t) {
   return (t || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
@@ -6628,6 +6756,15 @@ function ieConstruirIndice(contratos) {
         });
       });
     });
+  });
+  // Liga as duas pessoas de um mesmo grupo (Locador 1 e 2 etc.) e marca os casais
+  indice.forEach(e => {
+    if (e.num !== '2') return;
+    const outro = indice.find(o => o.contrato === e.contrato && o.grp === e.grp && o.n !== e.n);
+    if (outro) {
+      e.par = outro;
+      e.casal = (e.contrato.campos[e.grp + '_casados'] || '') === 'Sim';
+    }
   });
   return indice;
 }
@@ -6768,8 +6905,11 @@ function ieBuscar() {
       if (obs.relevantes) tagObs = `<span class="ie-badge-obs">📌 ${obs.relevantes} observação(ões) citam esta pessoa</span>`;
       else if (obs.itens.length) tagObs = `<span class="ie-badge-obs">📝 ${obs.itens.length} observação(ões) no contrato</span>`;
       const end = e.contrato.enderecoImovel || 'Endereço não informado';
+      const tagPar = e.par
+        ? (e.casal ? `<span class="ie-badge-casal">💍 casal</span>` : `<span class="ie-badge-obs">👥 2 pessoas</span>`) +
+          `<span class="ie-res-sub">com ${escapeHtmlBusca(e.par.nome)}</span>` : '';
       return `<div class="ie-res" data-idx="${idx}" onclick="ieSelecionar(${idx})">` +
-        `<strong>${escapeHtmlBusca(e.nome)}</strong><span class="ie-badge ${e.grp}">${escapeHtmlBusca(e.papel)}</span>${tagObs}` +
+        `<strong>${escapeHtmlBusca(e.nome)}</strong><span class="ie-badge ${e.grp}">${escapeHtmlBusca(e.papel)}</span>${tagPar}${tagObs}` +
         `<span class="ie-res-sub">${escapeHtmlBusca(e.contrato.contractId || '—')} — ${escapeHtmlBusca(end)}</span></div>`;
     }).join('') + (total > lista.length
       ? `<div class="ie-vazio">Mostrando os ${lista.length} contratos mais recentes de ${total}. Digite mais do nome para refinar.</div>` : '');
@@ -6781,6 +6921,8 @@ function ieBuscar() {
 function ieLimparSelecao() {
   IE.sel = null;
   IE.slot = null;
+  IE.ativa = null;
+  IE.marcados = [];
   const det = document.getElementById('ie_detalhe');
   if (det) { det.style.display = 'none'; det.innerHTML = ''; }
   document.querySelectorAll('.ie-res.selecionado').forEach(el => el.classList.remove('selecionado'));
@@ -6804,13 +6946,10 @@ function ieSelecionar(idx) {
   ieRenderDetalhe();
 }
 
-function ieRenderDetalhe() {
-  const e = IE.sel;
-  const det = document.getElementById('ie_detalhe');
+function ieCardPessoa(e, comCheckbox) {
   const c = e.contrato.campos, p = e.pref, esc = escapeHtmlBusca;
   const linha = (rot, val) => val ? `<div><b>${rot}:</b> ${esc(val)}</div>` : '';
   const rg = [c[p + '_rg'], c[p + '_rg_orgao']].filter(Boolean).join(' – ');
-
   const dadosHtml =
     linha(e.ehEmpresa ? 'CNPJ' : 'CPF', c[p + '_cpf']) +
     linha(e.ehEmpresa ? 'Natureza jurídica' : 'Estado civil', e.ehEmpresa ? c[p + '_natureza_juridica'] : c[p + '_ec']) +
@@ -6818,7 +6957,75 @@ function ieRenderDetalhe() {
     linha(e.ehEmpresa ? 'NIRE' : 'RG', rg) +
     linha('Telefone', c[p + '_tel']) + linha('E-mail', c[p + '_email']) +
     linha(e.ehEmpresa ? 'Sede' : 'Endereço', ieTextoEndereco(ieEnderecoDaPessoa(e)));
+  const chk = comCheckbox
+    ? `<label class="ie-pessoa-check"><input type="checkbox" class="ie_pessoa_chk" data-n="${e.n}" ${e === IE.sel ? 'checked' : ''} onchange="ieAtualizarSelecao()"> Importar esta pessoa</label>` : '';
+  return `<div class="ie-pessoa"><div class="ie-pessoa-nome">${esc(e.nome)}</div>` +
+    `<div class="ie-pessoa-origem">Era <b>${esc(e.papel)}</b> no contrato ${esc(e.contrato.contractId || '—')}${comCheckbox ? '' : ' — ' + esc(e.contrato.enderecoImovel || '')}</div>` +
+    `<div class="ie-dados">${dadosHtml}</div>${chk}</div>`;
+}
 
+function ieRenderDetalhe() {
+  const e = IE.sel;
+  const det = document.getElementById('ie_detalhe');
+  const c = e.contrato.campos, esc = escapeHtmlBusca;
+  const plural = IE_ROTULOS[e.grp].plural;
+  let topo = '';
+  if (e.par) {
+    const duas = [e, e.par].sort((x, y) => x.n - y.n);
+    const dt = c[e.grp + '_data_casamento'], rg = c[e.grp + '_regime'];
+    if (e.casal) {
+      const detalhe = [rg ? 'regime: ' + rg : '', dt ? dt : ''].filter(Boolean).join(', ');
+      topo = `<div class="ie-banner casal">💍 <b>Casal:</b> ${esc(duas[0].nome)} e ${esc(duas[1].nome)} eram casados entre si neste contrato${detalhe ? ' (' + esc(detalhe) + ')' : ''}. ` +
+        `Marque as duas pessoas para importar o casal junto, ou só uma para importar individualmente.</div>`;
+    } else {
+      topo = `<div class="ie-banner">👥 Este contrato tem <b>2 ${plural}</b>: ${esc(duas[0].nome)} e ${esc(duas[1].nome)}. ` +
+        `Marque quem quer importar (uma ou as duas).</div>`;
+    }
+    topo += `<div class="ie-pessoas-duas">${duas.map(x => ieCardPessoa(x, true)).join('')}</div>`;
+  } else {
+    topo = ieCardPessoa(e, false);
+  }
+  det.innerHTML = topo + `<div id="ie_destino"></div><div id="ie_obs_area"></div>` +
+    `<div class="ie-acoes"><button type="button" class="ie-btn-cancelar" onclick="fecharImportEspecial()">Cancelar</button>` +
+    `<button type="button" class="btn-importar-cadastro" id="ie_btn_importar" disabled onclick="ieImportar()">⬇ Escolha a posição</button></div>`;
+  det.style.display = 'block';
+  ieAtualizarSelecao();
+  det.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+// Lê quem está marcado e redesenha destino + observações
+function ieAtualizarSelecao() {
+  const e = IE.sel;
+  const chks = [...document.querySelectorAll('#ie_detalhe .ie_pessoa_chk')];
+  let marcados;
+  if (!chks.length) marcados = [e];
+  else marcados = [e, e.par].filter(x => chks.some(ch => ch.checked && parseInt(ch.dataset.n, 10) === x.n)).sort((x, y) => x.n - y.n);
+  IE.marcados = marcados;
+  IE.ativa = marcados.length === 1 ? marcados[0] : null;
+  IE.slot = null;
+  ieRenderDestino();
+  ieRenderObs();
+  const btn = document.getElementById('ie_btn_importar');
+  btn.disabled = true;
+  btn.textContent = marcados.length ? '⬇ Escolha a posição' : '⬇ Marque ao menos uma pessoa';
+}
+
+function ieRenderDestino() {
+  const box = document.getElementById('ie_destino');
+  const esc = escapeHtmlBusca;
+  const m = IE.marcados;
+  if (!m.length) { box.innerHTML = '<div class="ie-nota">Marque pelo menos uma das pessoas acima.</div>'; return; }
+  if (m.length === 2) {
+    const btns = ['lcd', 'lct', 'fdr'].map(g => {
+      const o1 = ieOcupanteAtual(g + '1'), o2 = ieOcupanteAtual(g + '2');
+      const sub = (o1 || o2) ? 'substitui: ' + [o1, o2].filter(Boolean).join(' e ') : 'vago';
+      return `<button type="button" class="ie-slot" data-slot="${g}" onclick="ieEscolherSlot('${g}')">` +
+        `<b>${IE_ROTULOS[g].plural} 1 e 2</b><span>${esc(sub)}</span></button>`;
+    }).join('');
+    box.innerHTML = `<div class="ie-secao-titulo">Colocar o casal/as duas pessoas neste contrato como:</div><div class="ie-slots">${btns}</div>`;
+    return;
+  }
+  const e = IE.ativa, c = e.contrato.campos;
   const slotsHtml = IE_SLOTS.map(slot => {
     const ocup = ieOcupanteAtual(slot);
     const desab = e.ehEmpresa && slot.endsWith('2');
@@ -6826,33 +7033,37 @@ function ieRenderDetalhe() {
     return `<button type="button" class="ie-slot${desab ? ' desabilitado' : ''}" data-slot="${slot}" ${desab ? 'disabled' : ''} onclick="ieEscolherSlot('${slot}')">` +
       `<b>${ieRotuloSlot(slot)}</b><span>${esc(sub)}</span></button>`;
   }).join('');
-
   const nomeRep = e.ehEmpresa ? (c[e.grp + '2_nome'] || '') : '';
   const repHtml = nomeRep
     ? `<label class="ie-check"><input type="checkbox" id="ie_com_rep" checked> <span>Trazer também o Representante desta empresa (<b>${esc(nomeRep)}</b>) para a 2ª posição do mesmo grupo</span></label>` : '';
+  box.innerHTML = `<div class="ie-secao-titulo">Colocar ${esc(e.nome.split(' ')[0])} neste contrato como:</div><div class="ie-slots">${slotsHtml}</div>` + repHtml;
+}
 
-  const obs = ieObsDaEntrada(e);
-  let obsHtml;
+// Observações (itens) do contrato de origem, relevantes para quem estiver marcado
+function ieObsParaMarcados() {
+  const m = IE.marcados;
+  if (!m.length) return { itens: [], automaticas: 0 };
+  const base = ieObsDaEntrada(m[0]);
+  if (m.length === 1) return base;
+  const itens = base.itens.map(i => ({ ...i, relevante: m.some(x => ieRelevante(i.texto, x)) }));
+  return { itens, automaticas: base.automaticas, relevantes: itens.filter(i => i.relevante).length };
+}
+function ieRenderObs() {
+  const box = document.getElementById('ie_obs_area');
+  const esc = escapeHtmlBusca;
+  if (!IE.marcados.length) { box.innerHTML = ''; return; }
+  const obs = ieObsParaMarcados();
+  const e = IE.sel;
   if (obs.itens.length) {
+    const quem = IE.marcados.length > 1 ? 'citam estas pessoas' : 'cita esta pessoa';
     const itensHtml = obs.itens.map((i, k) =>
       `<label class="ie-obs-item"><input type="checkbox" id="ie_obs_${k}" ${i.relevante ? 'checked' : ''}>` +
-      `<span class="ie-obs-texto">${esc(i.texto)}${i.relevante ? '<span class="ie-obs-tag">cita esta pessoa</span>' : ''}</span></label>`).join('');
+      `<span class="ie-obs-texto">${esc(i.texto)}${i.relevante ? `<span class="ie-obs-tag">${quem}</span>` : ''}</span></label>`).join('');
     const notaAuto = obs.automaticas ? `<div class="ie-nota" style="margin:6px 0 0">${obs.automaticas} linha(s) automática(s) (RG, PJ, animais etc.) não aparecem aqui: são geradas de novo em "Gerar Observações".</div>` : '';
-    obsHtml = `<div class="ie-obs"><div class="ie-secao-titulo">📌 Observações do contrato ${esc(e.contrato.contractId || '')} — marque as que devem ir para o contrato novo</div>${itensHtml}${notaAuto}</div>`;
+    box.innerHTML = `<div class="ie-obs"><div class="ie-secao-titulo">📌 Observações do contrato ${esc(e.contrato.contractId || '')} — marque as que devem ir para o contrato novo</div>${itensHtml}${notaAuto}</div>`;
   } else {
-    obsHtml = `<div class="ie-nota">Este contrato não tem observações para importar${obs.automaticas ? ' (só linhas automáticas, geradas de novo em "Gerar Observações")' : ''}.</div>`;
+    box.innerHTML = `<div class="ie-nota">Este contrato não tem observações para importar${obs.automaticas ? ' (só linhas automáticas, geradas de novo em "Gerar Observações")' : ''}.</div>`;
   }
-
-  det.innerHTML =
-    `<div class="ie-pessoa"><div class="ie-pessoa-nome">${esc(e.nome)}</div>` +
-    `<div class="ie-pessoa-origem">Era <b>${esc(e.papel)}</b> no contrato ${esc(e.contrato.contractId || '—')} — ${esc(e.contrato.enderecoImovel || '')}</div>` +
-    `<div class="ie-dados">${dadosHtml}</div></div>` +
-    `<div class="ie-secao-titulo">Colocar neste contrato como:</div><div class="ie-slots">${slotsHtml}</div>` +
-    repHtml + obsHtml +
-    `<div class="ie-acoes"><button type="button" class="ie-btn-cancelar" onclick="fecharImportEspecial()">Cancelar</button>` +
-    `<button type="button" class="btn-importar-cadastro" id="ie_btn_importar" disabled onclick="ieImportar()">⬇ Escolha a posição</button></div>`;
-  det.style.display = 'block';
-  det.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
 
 function ieEscolherSlot(slot) {
@@ -6860,7 +7071,9 @@ function ieEscolherSlot(slot) {
   document.querySelectorAll('#ie_detalhe .ie-slot').forEach(b => b.classList.toggle('selecionado', b.dataset.slot === slot));
   const btn = document.getElementById('ie_btn_importar');
   btn.disabled = false;
-  btn.textContent = '⬇ Importar como ' + ieRotuloSlot(slot);
+  btn.textContent = slot.length === 3
+    ? '⬇ Importar como ' + IE_ROTULOS[slot].plural + ' 1 e 2'
+    : '⬇ Importar como ' + ieRotuloSlot(slot);
 }
 
 // ----- Montagem dos dados e aplicação -----
@@ -6875,8 +7088,44 @@ function ieEscreverEndereco(dados, grp, n, end) {
   dados[k.rua] = end.rua; dados[k.bairro] = end.bairro; dados[k.cidade] = end.cidade;
 }
 
+// Valor do <select> de regime que corresponde ao texto do cadastro (sem diferenciar maiúsculas/acentos)
+function ieValorRegime(grp, texto) {
+  const sel = document.getElementById(grp + '_regime');
+  if (!sel || !texto) return texto || '';
+  const alvo = ieNormalizar(texto);
+  const op = [...sel.options].find(o => ieNormalizar(o.value) === alvo || ieNormalizar(o.textContent) === alvo);
+  return op ? op.value : texto;
+}
+
+// Parte final comum: aplica dados, soma observações marcadas, fecha e avisa
+function ieFinalizar(dados, grpD, tituloToast, avisos) {
+  aplicarDadosFormulario(dados);
+  reformatarCamposImportados(Object.fromEntries(Object.entries(dados).filter(([, val]) => val !== '' && val !== false)));
+
+  const obs = ieObsParaMarcados();
+  const marcadas = obs.itens.filter((_, k) => document.getElementById('ie_obs_' + k)?.checked);
+  const ta = document.getElementById('observacoes');
+  let atual = ta.value.trim();
+  if (atual === '---') atual = '';
+  const novas = marcadas.filter(i => !atual.includes(i.texto));
+  let blocoNovo = '';
+  novas.forEach((i, k) => { blocoNovo += (k === 0 ? '' : (novas[k - 1].bullet && i.bullet ? '\n' : '\n\n')) + i.texto; });
+  if (blocoNovo) ta.value = atual ? atual + '\n\n' + blocoNovo : blocoNovo;
+  atualizarAvisoPendencias();
+
+  fecharImportEspecial();
+  const secao = document.getElementById(IE_ROTULOS[grpD].secao);
+  if (secao) secao.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  const partes = [tituloToast];
+  if (marcadas.length) partes.push(`${novas.length} observação(ões) adicionada(s)`);
+  mostrarToast(partes.join(' — ') + '. Revise os dados!');
+  if (avisos.length) alert('Confira:\n\n• ' + avisos.join('\n• '));
+}
+
 function ieImportar() {
-  const e = IE.sel, destino = IE.slot;
+  if (IE.marcados.length === 2 && IE.slot && IE.slot.length === 3) return ieImportarPar();
+  const e = IE.ativa, destino = IE.slot;
   if (!e || !destino) return;
   const c = e.contrato.campos;
   const grpD = destino.slice(0, 3), nD = parseInt(destino.slice(3), 10);
@@ -6922,32 +7171,45 @@ function ieImportar() {
     avisos.push(`Estado civil veio como "${c[e.pref + '_ec']}" porque, no contrato de origem, ${e.nome.split(' ')[0]} era casad${(c[e.pref + '_sexo'] === 'Feminino') ? 'a' : 'o'} com o outro ${IE_ROTULOS[e.grp].masc.toLowerCase()} do mesmo contrato. Confira se continua correto.`);
   }
 
-  aplicarDadosFormulario(dados);
-  reformatarCamposImportados(Object.fromEntries(Object.entries(dados).filter(([, val]) => val !== '' && val !== false)));
+  const partes = `✨ ${e.nome.split(' ')[0]} importado(a) como ${rotuloSlot}` + (comRep ? ' — com o representante' : '');
+  ieFinalizar(dados, grpD, partes, avisos);
+}
 
-  // --- observações marcadas: somam ao final do que já está escrito ---
-  const obs = ieObsDaEntrada(e);
-  const marcadas = obs.itens.filter((_, k) => document.getElementById('ie_obs_' + k)?.checked);
-  const ta = document.getElementById('observacoes');
-  let atual = ta.value.trim();
-  if (atual === '---') atual = '';
-  const novas = marcadas.filter(i => !atual.includes(i.texto));
-  let blocoNovo = '';
-  novas.forEach((i, k) => { blocoNovo += (k === 0 ? '' : (novas[k - 1].bullet && i.bullet ? '\n' : '\n\n')) + i.texto; });
-  if (blocoNovo) {
-    ta.value = atual ? atual + '\n\n' + blocoNovo : blocoNovo;
+// Importa as duas pessoas de um mesmo contrato (casal ou não) para o grupo inteiro
+function ieImportarPar() {
+  const [p1, p2] = IE.marcados;
+  const grpD = IE.slot;
+  const c = p1.contrato.campos, grpO = p1.grp;
+  const rotuloGrupo = IE_ROTULOS[grpD].plural;
+
+  const confirmar = [];
+  const o1 = ieOcupanteAtual(grpD + '1'), o2 = ieOcupanteAtual(grpD + '2');
+  if (o1 || o2) confirmar.push(`${rotuloGrupo} já estão preenchidos com ${[o1, o2].filter(Boolean).map(n => '"' + n + '"').join(' e ')} — serão substituídos.`);
+  if (document.getElementById('num_' + grpD).value === 'PJ') confirmar.push(`O grupo de ${rotuloGrupo} está como Pessoa Jurídica — será trocado por duas pessoas físicas.`);
+  if (grpD === 'fdr' && document.getElementById('garantia').value === 'CAUÇÃO') confirmar.push('A garantia deste contrato está como CAUÇÃO — importar fiadores troca a garantia para FIADOR.');
+  if (confirmar.length && !confirm('Atenção:\n\n• ' + confirmar.join('\n• ') + '\n\nContinuar?')) return;
+
+  const dados = {};
+  const avisos = [];
+  dados['num_' + grpD] = '2';
+  if (grpD === 'fdr') dados.garantia = 'FIADOR';
+  ieCopiarPessoa(c, p1.pref, grpD + '1', dados);
+  ieCopiarPessoa(c, p2.pref, grpD + '2', dados);
+  ieEscreverEndereco(dados, grpD, 1, ieLerEndereco(c, grpO, 1));
+  ieEscreverEndereco(dados, grpD, 2, ieLerEndereco(c, grpO, 2));
+
+  if (p1.casal) {
+    dados[grpD + '_casados'] = 'Sim';
+    dados[grpD + '_regime'] = ieValorRegime(grpD, c[grpO + '_regime']);
+    dados[grpD + '_data_casamento'] = c[grpO + '_data_casamento'] || '';
+  } else {
+    dados[grpD + '_casados'] = '';
+    dados[grpD + '_regime'] = '';
+    dados[grpD + '_data_casamento'] = '';
   }
-  atualizarAvisoPendencias();
 
-  fecharImportEspecial();
-  const secao = document.getElementById(IE_ROTULOS[grpD].secao);
-  if (secao) secao.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  const partes = [`✨ ${e.nome.split(' ')[0]} importado(a) como ${rotuloSlot}`];
-  if (comRep) partes.push('com o representante');
-  if (marcadas.length) partes.push(`${novas.length} observação(ões) adicionada(s)`);
-  mostrarToast(partes.join(' — ') + '. Revise os dados!');
-  if (avisos.length) alert('Confira:\n\n• ' + avisos.join('\n• '));
+  const f = (p1.nome.split(' ')[0]) + ' e ' + (p2.nome.split(' ')[0]);
+  ieFinalizar(dados, grpD, `✨ ${f} importados(as) como ${rotuloGrupo} 1 e 2` + (p1.casal ? ' (casal)' : ''), avisos);
 }
 
 // ==========================================================
@@ -7268,6 +7530,8 @@ function detectarCasadosEntreSiContrato(pessoas, bloco) {
   let dataCasamento = '';
   const mData = /(?:no\s+dia|desde|em)\s+(\d{1,2}\/\d{1,2}\/\d{4})/i.exec(bloco);
   if (mData) dataCasamento = mData[1];
+  else if (/antes\s+da\s+vig[êe]ncia\s+da\s+lei\s+6\.?515\/77/i.test(bloco)) dataCasamento = CASAMENTO_LEI.ant.valor;
+  else if (/na\s+vig[êe]ncia\s+da\s+lei\s+6\.?515\/77/i.test(bloco)) dataCasamento = CASAMENTO_LEI.vig.valor;
 
   return { casadosEntreSi, regimeBens, dataCasamento };
 }
