@@ -2917,7 +2917,7 @@ async function processarCarregarFormulario(fileList) {
 })();
 
 // ==========================================================
-// v2.48 · ENVIAR PARA A IMOBILIÁRIA
+// v2.48 · ENVIAR PARA A IMOBILIÁRIA  (v2.49: só os documentos, com nome padrão — sem o PDF)
 // Manda o PDF do formulário e cada documento (já com o nome do tipo de
 // documento e da pessoa) para a pasta da imobiliária no Google Drive, e
 // avisa o sistema da imobiliária (Contratos › Cadastros recebidos).
@@ -2963,27 +2963,26 @@ const limparNomeEnvio = t => String(t || '').replace(/[\\/:*?"<>|]/g, ' ').repla
 async function enviarParaImobiliaria() {
   if (!validarObrigatorios()) return;
   if (!ENVIO_URL) { alert('O envio direto ainda não está configurado. Use "Baixar PDF" e mande pelo WhatsApp.'); return; }
-  if (typeof PDFLib === 'undefined') { alert('A biblioteca de PDF não carregou. Verifique a internet e atualize a página.'); return; }
   const btn = document.getElementById('btn_enviar_imob'), txt0 = btn.textContent;
   btn.disabled = true;
   try {
     const nome = v('loc1_nome') || v('fiador1_nome') || v('fiador_ref_locatario') || 'Sem nome';
     btn.textContent = '⏳ Preparando…';
     const ini = await postarEnvio({ acao: 'iniciar', nome: limparNomeEnvio(nome) });
-    btn.textContent = '⏳ Gerando o PDF…';
-    const resultado = await construirPDF();
-    const pdf = new Blob([resultado.bytes], { type: 'application/pdf' });
-    const itens = [{ nome: nomeArquivoBase() + '.pdf', rotulo: 'Formulário completo (PDF)', arq: pdf }];
+    // v2.49: não gera mais o PDF do formulário no envio (a imobiliária gera no sistema quando precisar);
+    // cada documento vai com a "chave" (ex.: loc1_pessoal) e chega no Drive com o nome padrão
+    const resultado = { avisos: [] };
+    const itens = [];
     Object.keys(documentosState).forEach(chave => {
       const st = documentosState[chave]; if (!st || st.dispensado || !st.arquivos.length) return;
       const rot = rotuloDocEnvio(chave), pes = pessoaDocEnvio(chave);
-      st.arquivos.forEach((a, i) => itens.push({ rotulo: rot + (pes ? ' · ' + pes : ''), base: limparNomeEnvio(rot + (pes ? ' - ' + pes : '') + (st.arquivos.length > 1 ? ' (' + (i + 1) + ')' : '')), arq: a }));
+      st.arquivos.forEach((a, i) => itens.push({ chave: chave, rotulo: rot + (pes ? ' · ' + pes : ''), base: limparNomeEnvio(rot + (pes ? ' - ' + pes : '') + (st.arquivos.length > 1 ? ' (' + (i + 1) + ')' : '')), arq: a }));
     });
     for (let i = 0; i < itens.length; i++) {
       btn.textContent = '⏳ Enviando ' + (i + 1) + ' de ' + itens.length + '…';
       const it = itens[i], arq = it.nome ? it.arq : await comprimirImagemEnvio(it.arq);
       const ext = it.nome ? '' : (((arq.name || '').match(/\.[A-Za-z0-9]{2,5}$/) || [''])[0] || (arq.type === 'application/pdf' ? '.pdf' : '.jpg'));
-      await postarEnvio({ acao: 'arquivo', sessao: ini.sessao, nome: it.nome || (it.base + ext.toLowerCase()), rotulo: it.rotulo, mime: arq.type || 'application/octet-stream', b64: await paraBase64Envio(arq) });
+      await postarEnvio({ acao: 'arquivo', sessao: ini.sessao, chave: it.chave || '', nome: it.nome || (it.base + ext.toLowerCase()), rotulo: it.rotulo, mime: arq.type || 'application/octet-stream', b64: await paraBase64Envio(arq) });
     }
     btn.textContent = '⏳ Finalizando…';
     await postarEnvio({ acao: 'concluir', sessao: ini.sessao, resumo: { tipo: modoPreenchimento, nome: nome,
